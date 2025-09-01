@@ -44,10 +44,16 @@ const bookDialog = document.getElementById("bookDialog");
 const outputBox = document.querySelector("output");
 const confirm = bookDialog.querySelector("#confirm");
 const closeBtn = bookDialog.querySelector("#closeBtn");
+const resetBtn = bookDialog.querySelector("#resetBtn");
 
 addBook.addEventListener("click", () => {
+  document.querySelector("form").reset();
   bookDialog.showModal();
-  text.textContent = "";
+});
+
+resetBtn.addEventListener("click", () => {
+    event.preventDefault();
+    document.querySelector("form").reset();
 });
 
 closeBtn.addEventListener("click", (event) => {
@@ -73,4 +79,3 @@ bookDialog.addEventListener("submit", (event) => {
 
   outputBox.value = "Book successfully added.";
 });
-
