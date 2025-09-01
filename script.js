@@ -13,8 +13,6 @@ Book.prototype.addBookToLibrary = function () {
   myLibrary.push(this);
 };
 
-const checkbox = document.querySelector('input[type="checkbox"]');
-
 function updateShelf() {
   bookShelf.innerHTML = "";
   myLibrary.forEach((book) => {
@@ -35,7 +33,7 @@ function updateShelf() {
     yearPublished.textContent = book.yearPublished;
     pageCount.textContent =
       book.pageCount !== "" ? `${book.pageCount} pages` : book.pageCount;
-    read.textContent = `read`;
+    read.innerHTML = book.read === true ? `read &#10003` : "not read &#10007";
     newBook.appendChild(title);
     newBook.appendChild(author);
     newBook.appendChild(yearPublished);
@@ -43,6 +41,12 @@ function updateShelf() {
     newBook.appendChild(read);
     newBook.appendChild(deleteBtn);
     bookShelf.appendChild(newBook);
+
+    read.addEventListener("click", () => {
+      if (book.read === true) book.read = false;
+      else book.read = true;
+      read.innerHTML = book.read === true ? `read &#10003` : "not read &#10007";
+    });
 
     deleteBtn.addEventListener("click", () => {
       newBook.remove();
@@ -55,7 +59,6 @@ const bookDialog = document.getElementById("bookDialog");
 const outputBox = document.querySelector("output");
 const closeBtn = bookDialog.querySelector("#closeBtn");
 const resetBtn = bookDialog.querySelector("#resetBtn");
-
 
 addBook.addEventListener("click", () => {
   document.querySelector("form").reset();
@@ -76,12 +79,28 @@ bookDialog.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const inputs = document.querySelectorAll("input");
+
+  console.log(inputs[4].checked);
+
   const bookData = [];
   inputs.forEach((input) => {
     bookData.push(input.value);
   });
 
+  bookData.pop();
+
+
+  if (inputs[4].checked === true) {
+    bookData[4] = true;
+  }
+  if (inputs[4].checked === false) {
+    bookData[4] = false;
+  }
+
+
   const newBook = new Book(...bookData);
+
+  console.log(newBook);
 
   newBook.addBookToLibrary();
   updateShelf();
