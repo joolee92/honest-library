@@ -2,3 +2,19 @@
     margin: 0;
     padding: 0;
 }
+
+header {
+    display: flex;
+}
+
+.entry {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(202, 187, 131);
+    color: rgb(72, 128, 62);
+}
+
+.bookshelf {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}

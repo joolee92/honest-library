@@ -7,10 +7,42 @@
     <title>Honest Library</title>
   </head>
   <body>
-    <div class="bookshelf">
-        <div class="card">
-        </div>
-    </div>
+    <header>
+      <h1>Honest Library</h1>
+      <dialog id="bookDialog">
+        <form>
+          <label
+            >Title:
+            <input type="text" name="title" />
+          </label>
+          <label
+            >Author:
+            <input type="text" name="author" />
+          </label>
+          <label
+            >Publication Year:
+            <input type="text" name="yearPublished" />
+          </label>
+          <label
+            ># pages:
+            <input type="text" name="pageCount" />
+          </label>
+          <label
+            >read?:
+            <input type="text" name="read" />
+          </label>
+          <div>
+            <button value="cancel" formmethod="dialog">Cancel</button>
+            <button id="confirmBtn" value="default">Confirm</button>
+          </div>
+        </form>
+      </dialog>
+
+      <button id="addBook">+</button>
+      <p id="text"></p>
+      <output></output>
+    </header>
+    <div class="bookshelf"></div>
     <script src="script.js"></script>
   </body>
 </html>
