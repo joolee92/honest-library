@@ -7,18 +7,24 @@ function Book(title, author, yearPublished, pageCount, read) {
   this.yearPublished = yearPublished;
   this.pageCount = pageCount;
   this.read = read;
-  this.id = crypto.randomUUID();
 }
 
 Book.prototype.addBookToLibrary = function () {
   myLibrary.push(this);
 };
 
+const checkbox = document.querySelector('input[type="checkbox"]');
+
 function updateShelf() {
   bookShelf.innerHTML = "";
   myLibrary.forEach((book) => {
     const newBook = document.createElement("div");
     newBook.classList.add("entry");
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete");
+    deleteBtn.textContent = "delete";
+
     const title = document.createElement("h1");
     const author = document.createElement("h2");
     const yearPublished = document.createElement("h3");
@@ -35,16 +41,21 @@ function updateShelf() {
     newBook.appendChild(yearPublished);
     newBook.appendChild(pageCount);
     newBook.appendChild(read);
+    newBook.appendChild(deleteBtn);
     bookShelf.appendChild(newBook);
+
+    deleteBtn.addEventListener("click", () => {
+      newBook.remove();
+    });
   });
 }
 
 const addBook = document.getElementById("addBook");
 const bookDialog = document.getElementById("bookDialog");
 const outputBox = document.querySelector("output");
-const confirm = bookDialog.querySelector("#confirm");
 const closeBtn = bookDialog.querySelector("#closeBtn");
 const resetBtn = bookDialog.querySelector("#resetBtn");
+
 
 addBook.addEventListener("click", () => {
   document.querySelector("form").reset();
@@ -52,8 +63,8 @@ addBook.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
-    event.preventDefault();
-    document.querySelector("form").reset();
+  event.preventDefault();
+  document.querySelector("form").reset();
 });
 
 closeBtn.addEventListener("click", (event) => {
@@ -70,7 +81,6 @@ bookDialog.addEventListener("submit", (event) => {
     bookData.push(input.value);
   });
 
-  console.log(bookData[0], bookData[3]);
   const newBook = new Book(...bookData);
 
   newBook.addBookToLibrary();
