@@ -13,7 +13,7 @@
         <form>
           <label
             >Title:
-            <input type="text" name="title" />
+            <input type="text" name="title" required />
           </label>
           <label
             >Author:
@@ -29,17 +29,18 @@
           </label>
           <label
             >read?:
-            <input type="text" name="read" />
+            <input type="text" name="read" required />
           </label>
+
+          <input type="submit" id="confirm" />
+
           <div>
-            <button value="cancel" formmethod="dialog">Cancel</button>
-            <button id="confirmBtn" value="default">Confirm</button>
+            <button id="closeBtn">Cancel</button>
           </div>
         </form>
       </dialog>
 
       <button id="addBook">+</button>
-      <p id="text"></p>
       <output></output>
     </header>
     <div class="bookshelf"></div>

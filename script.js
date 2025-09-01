@@ -10,20 +10,12 @@ function Book(title, author, yearPublished, pageCount, read) {
   this.id = crypto.randomUUID();
 }
 
-
 Book.prototype.addBookToLibrary = function () {
   myLibrary.push(this);
 };
 
-
-
-/*
-function addBook() {
-
-}
-*/
 function updateShelf() {
-    bookShelf.innerHTML = '';
+  bookShelf.innerHTML = "";
   myLibrary.forEach((book) => {
     const newBook = document.createElement("div");
     newBook.classList.add("entry");
@@ -35,7 +27,8 @@ function updateShelf() {
     title.textContent = book.title;
     author.textContent = book.author;
     yearPublished.textContent = book.yearPublished;
-    pageCount.textContent = `${book.pageCount} pages`;
+    pageCount.textContent =
+      book.pageCount !== "" ? `${book.pageCount} pages` : book.pageCount;
     read.textContent = `read`;
     newBook.appendChild(title);
     newBook.appendChild(author);
@@ -46,35 +39,38 @@ function updateShelf() {
   });
 }
 
-
 const addBook = document.getElementById("addBook");
 const bookDialog = document.getElementById("bookDialog");
 const outputBox = document.querySelector("output");
-const confirmBtn = bookDialog.querySelector("#confirmBtn");
+const confirm = bookDialog.querySelector("#confirm");
+const closeBtn = bookDialog.querySelector("#closeBtn");
 
 addBook.addEventListener("click", () => {
   bookDialog.showModal();
   text.textContent = "";
 });
 
-// "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
-bookDialog.addEventListener("close", (e) => {
-  outputBox.value =
-    bookDialog.returnValue === "default"
-      ? "No return value."
-      : `ReturnValue: ${bookDialog.returnValue}`; // Have to check for "default" rather than empty string
+closeBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  bookDialog.close();
 });
 
-confirmBtn.addEventListener("click", (event) => {
+bookDialog.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const inputs = document.querySelectorAll("input"); // Get all input elements
+  const inputs = document.querySelectorAll("input");
   const bookData = [];
   inputs.forEach((input) => {
     bookData.push(input.value);
   });
+
+  console.log(bookData[0], bookData[3]);
   const newBook = new Book(...bookData);
+
   newBook.addBookToLibrary();
   updateShelf();
   bookDialog.close();
+
+  outputBox.value = "Book successfully added.";
 });
+
