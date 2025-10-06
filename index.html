@@ -9,40 +9,42 @@
   <body>
     <header>
       <h1>Honest Library</h1>
-      <dialog id="bookDialog">
-        <form>
-          <label
-            >Title:
-            <input type="text" name="title" required />
-          </label>
-          <label
-            >Author:
-            <input type="text" name="author" />
-          </label>
-          <label
-            >Publication Year:
-            <input type="text" name="yearPublished" />
-          </label>
-          <label
-            ># pages:
-            <input type="text" name="pageCount" />
-          </label>
-          <label
-            >read?
-            <input type="checkbox" name="read"/>
-          </label>
-
-          <div>
-            <button id="closeBtn">Cancel</button>
-            <button id="resetBtn">Reset</button>
-            <input type="submit"/>
-          </div>
-        </form>
-      </dialog>
-
+    </header>
+    <div class="add">
       <button id="addBook">+</button>
       <output></output>
-    </header>
+    </div>
+    <dialog id="bookDialog">
+      <form>
+        <label
+          >Title:
+          <input type="text" name="title" required />
+        </label>
+        <label
+          >Author:
+          <input type="text" name="author" />
+        </label>
+        <label
+          >Publication Year:
+          <input type="text" name="yearPublished" />
+        </label>
+        <label
+          ># pages:
+          <input type="text" name="pageCount" />
+        </label>
+        <label
+          >read?
+          <input type="checkbox" name="read" />
+        </label>
+
+        <div>
+          <button id="closeBtn">Cancel</button>
+          <button id="resetBtn">Reset</button>
+          <input type="submit" />
+        </div>
+      </form>
+    </dialog>
+
     <div class="bookshelf"></div>
     <script src="script.js"></script>
   </body>

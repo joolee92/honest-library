@@ -1,17 +1,21 @@
 const myLibrary = [];
 const bookShelf = document.querySelector(".bookshelf");
 
-function Book(title, author, yearPublished, pageCount, read) {
-  this.title = title;
-  this.author = author;
-  this.yearPublished = yearPublished;
-  this.pageCount = pageCount;
-  this.read = read;
-}
+class Book {
+  constructor(title, author, yearPublished, pageCount, read) {
+    this.title = title;
+    this.author = author;
+    this.yearPublished = yearPublished;
+    this.pageCount = pageCount;
+    this.read = read;
+  }
 
-Book.prototype.addBookToLibrary = function () {
-  myLibrary.push(this);
-};
+
+
+  addBookToLibrary() {
+    myLibrary.push(this);
+  }
+}
 
 function updateShelf() {
   bookShelf.innerHTML = "";
@@ -72,6 +76,7 @@ resetBtn.addEventListener("click", () => {
 
 closeBtn.addEventListener("click", (event) => {
   event.preventDefault();
+  outputBox.value = "";
   bookDialog.close();
 });
 
@@ -89,7 +94,6 @@ bookDialog.addEventListener("submit", (event) => {
 
   bookData.pop();
 
-
   if (inputs[4].checked === true) {
     bookData[4] = true;
   }
@@ -97,10 +101,7 @@ bookDialog.addEventListener("submit", (event) => {
     bookData[4] = false;
   }
 
-
   const newBook = new Book(...bookData);
-
-  console.log(newBook);
 
   newBook.addBookToLibrary();
   updateShelf();
