@@ -9,9 +9,6 @@ class Book {
     this.pageCount = pageCount;
     this.read = read;
   }
-
-
-
   addBookToLibrary() {
     myLibrary.push(this);
   }
@@ -69,7 +66,7 @@ addBook.addEventListener("click", () => {
   bookDialog.showModal();
 });
 
-resetBtn.addEventListener("click", () => {
+resetBtn.addEventListener("click", (event) => {
   event.preventDefault();
   document.querySelector("form").reset();
 });
@@ -84,8 +81,6 @@ bookDialog.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const inputs = document.querySelectorAll("input");
-
-  console.log(inputs[4].checked);
 
   const bookData = [];
   inputs.forEach((input) => {
@@ -108,4 +103,22 @@ bookDialog.addEventListener("submit", (event) => {
   bookDialog.close();
 
   outputBox.value = "Book successfully added.";
+});
+
+const title = document.getElementById("title");
+title.addEventListener("input", () => {
+  if (title.validity.valueMissing) {
+    title.setCustomValidity("missing value");
+  } else {
+    title.setCustomValidity("");
+  }
+});
+
+const pages = document.getElementById("pages");
+pages.addEventListener("input", () => {
+  if (isNaN(parseInt(pages.value))) {
+    pages.setCustomValidity("Value must be a number");
+  } else {
+    pages.setCustomValidity("");
+  }
 });

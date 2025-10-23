@@ -18,19 +18,19 @@
       <form>
         <label
           >Title:
-          <input type="text" name="title" required />
+          <input type="text" id="title" name="title" required />
         </label>
         <label
           >Author:
-          <input type="text" name="author" />
+          <input type="text" id="author" name="author" />
         </label>
         <label
           >Publication Year:
-          <input type="text" name="yearPublished" />
+          <input type="text" id="year" name="yearPublished" />
         </label>
         <label
           ># pages:
-          <input type="text" name="pageCount" />
+          <input type="text" id="pages" name="pageCount" required/>
         </label>
         <label
           >read?
@@ -40,7 +40,7 @@
         <div>
           <button id="closeBtn">Cancel</button>
           <button id="resetBtn">Reset</button>
-          <input type="submit" />
+          <button>Submit</button>
         </div>
       </form>
     </dialog>
